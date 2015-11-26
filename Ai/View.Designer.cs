@@ -1,6 +1,6 @@
 ﻿namespace Ai
 {
-    partial class Form1
+    partial class View
     {
         /// <summary>
         /// Required designer variable.
@@ -35,14 +35,14 @@
             this.configureToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.tabMain = new System.Windows.Forms.TabControl();
             this.tabComs = new System.Windows.Forms.TabPage();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.lblOutput = new System.Windows.Forms.Label();
+            this.richTextBox1 = new System.Windows.Forms.RichTextBox();
+            this.btnEnter = new System.Windows.Forms.Button();
+            this.txtInput = new System.Windows.Forms.TextBox();
+            this.lblInput = new System.Windows.Forms.Label();
             this.tabConcept = new System.Windows.Forms.TabPage();
             this.tabGUI = new System.Windows.Forms.TabPage();
-            this.panel1 = new System.Windows.Forms.Panel();
-            this.lblInput = new System.Windows.Forms.Label();
-            this.txtInput = new System.Windows.Forms.TextBox();
-            this.btnEnter = new System.Windows.Forms.Button();
-            this.richTextBox1 = new System.Windows.Forms.RichTextBox();
-            this.lblOutput = new System.Windows.Forms.Label();
             this.menuStrip1.SuspendLayout();
             this.tabMain.SuspendLayout();
             this.tabComs.SuspendLayout();
@@ -111,26 +111,6 @@
             this.tabComs.Text = "Communicate";
             this.tabComs.UseVisualStyleBackColor = true;
             // 
-            // tabConcept
-            // 
-            this.tabConcept.Location = new System.Drawing.Point(4, 22);
-            this.tabConcept.Name = "tabConcept";
-            this.tabConcept.Padding = new System.Windows.Forms.Padding(3);
-            this.tabConcept.Size = new System.Drawing.Size(744, 185);
-            this.tabConcept.TabIndex = 1;
-            this.tabConcept.Text = "Concepts";
-            this.tabConcept.UseVisualStyleBackColor = true;
-            // 
-            // tabGUI
-            // 
-            this.tabGUI.Location = new System.Drawing.Point(4, 22);
-            this.tabGUI.Name = "tabGUI";
-            this.tabGUI.Padding = new System.Windows.Forms.Padding(3);
-            this.tabGUI.Size = new System.Drawing.Size(744, 185);
-            this.tabGUI.TabIndex = 2;
-            this.tabGUI.Text = "Graphical Display";
-            this.tabGUI.UseVisualStyleBackColor = true;
-            // 
             // panel1
             // 
             this.panel1.Controls.Add(this.lblOutput);
@@ -143,21 +123,22 @@
             this.panel1.Size = new System.Drawing.Size(441, 153);
             this.panel1.TabIndex = 0;
             // 
-            // lblInput
+            // lblOutput
             // 
-            this.lblInput.AutoSize = true;
-            this.lblInput.Location = new System.Drawing.Point(43, 14);
-            this.lblInput.Name = "lblInput";
-            this.lblInput.Size = new System.Drawing.Size(31, 13);
-            this.lblInput.TabIndex = 0;
-            this.lblInput.Text = "Input";
+            this.lblOutput.AutoSize = true;
+            this.lblOutput.Location = new System.Drawing.Point(199, 14);
+            this.lblOutput.Name = "lblOutput";
+            this.lblOutput.Size = new System.Drawing.Size(39, 13);
+            this.lblOutput.TabIndex = 4;
+            this.lblOutput.Text = "Output";
             // 
-            // txtInput
+            // richTextBox1
             // 
-            this.txtInput.Location = new System.Drawing.Point(46, 30);
-            this.txtInput.Name = "txtInput";
-            this.txtInput.Size = new System.Drawing.Size(100, 20);
-            this.txtInput.TabIndex = 1;
+            this.richTextBox1.Location = new System.Drawing.Point(202, 44);
+            this.richTextBox1.Name = "richTextBox1";
+            this.richTextBox1.Size = new System.Drawing.Size(100, 96);
+            this.richTextBox1.TabIndex = 3;
+            this.richTextBox1.Text = "";
             // 
             // btnEnter
             // 
@@ -168,24 +149,43 @@
             this.btnEnter.Text = "Enter";
             this.btnEnter.UseVisualStyleBackColor = true;
             // 
-            // richTextBox1
+            // txtInput
             // 
-            this.richTextBox1.Location = new System.Drawing.Point(202, 44);
-            this.richTextBox1.Name = "richTextBox1";
-            this.richTextBox1.Size = new System.Drawing.Size(100, 96);
-            this.richTextBox1.TabIndex = 3;
-            this.richTextBox1.Text = "";
+            this.txtInput.Location = new System.Drawing.Point(46, 30);
+            this.txtInput.Name = "txtInput";
+            this.txtInput.Size = new System.Drawing.Size(100, 20);
+            this.txtInput.TabIndex = 1;
             // 
-            // lblOutput
+            // lblInput
             // 
-            this.lblOutput.AutoSize = true;
-            this.lblOutput.Location = new System.Drawing.Point(199, 14);
-            this.lblOutput.Name = "lblOutput";
-            this.lblOutput.Size = new System.Drawing.Size(39, 13);
-            this.lblOutput.TabIndex = 4;
-            this.lblOutput.Text = "Output";
+            this.lblInput.AutoSize = true;
+            this.lblInput.Location = new System.Drawing.Point(43, 14);
+            this.lblInput.Name = "lblInput";
+            this.lblInput.Size = new System.Drawing.Size(31, 13);
+            this.lblInput.TabIndex = 0;
+            this.lblInput.Text = "Input";
             // 
-            // Form1
+            // tabConcept
+            // 
+            this.tabConcept.Location = new System.Drawing.Point(4, 22);
+            this.tabConcept.Name = "tabConcept";
+            this.tabConcept.Padding = new System.Windows.Forms.Padding(3);
+            this.tabConcept.Size = new System.Drawing.Size(744, 223);
+            this.tabConcept.TabIndex = 1;
+            this.tabConcept.Text = "Concepts";
+            this.tabConcept.UseVisualStyleBackColor = true;
+            // 
+            // tabGUI
+            // 
+            this.tabGUI.Location = new System.Drawing.Point(4, 22);
+            this.tabGUI.Name = "tabGUI";
+            this.tabGUI.Padding = new System.Windows.Forms.Padding(3);
+            this.tabGUI.Size = new System.Drawing.Size(744, 223);
+            this.tabGUI.TabIndex = 2;
+            this.tabGUI.Text = "Graphical Display";
+            this.tabGUI.UseVisualStyleBackColor = true;
+            // 
+            // View
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -194,8 +194,8 @@
             this.Controls.Add(this.lblTitle);
             this.Controls.Add(this.menuStrip1);
             this.MainMenuStrip = this.menuStrip1;
-            this.Name = "Form1";
-            this.Text = "Form1";
+            this.Name = "View";
+            this.Text = "View";
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
             this.tabMain.ResumeLayout(false);
