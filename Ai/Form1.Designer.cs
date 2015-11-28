@@ -1,6 +1,6 @@
 ﻿namespace Ai
 {
-    partial class View
+    partial class Form1
     {
         /// <summary>
         /// Required designer variable.
@@ -39,14 +39,28 @@
             this.lblOutput = new System.Windows.Forms.Label();
             this.richTextBox1 = new System.Windows.Forms.RichTextBox();
             this.btnEnter = new System.Windows.Forms.Button();
-            this.txtInput = new System.Windows.Forms.TextBox();
             this.lblInput = new System.Windows.Forms.Label();
             this.tabConcept = new System.Windows.Forms.TabPage();
             this.tabGUI = new System.Windows.Forms.TabPage();
+            this.btnFunc = new System.Windows.Forms.Button();
+            this.txtFunc = new System.Windows.Forms.TextBox();
+            this.label2 = new System.Windows.Forms.Label();
+            this.btnSize = new System.Windows.Forms.Button();
+            this.txtPart = new System.Windows.Forms.TextBox();
+            this.label1 = new System.Windows.Forms.Label();
+            this.txtSize = new System.Windows.Forms.TextBox();
+            this.lblSize = new System.Windows.Forms.Label();
+            this.panel2 = new System.Windows.Forms.Panel();
+            this.panel3 = new System.Windows.Forms.Panel();
+            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.button1 = new System.Windows.Forms.Button();
+            this.richTextBox2 = new System.Windows.Forms.RichTextBox();
             this.menuStrip1.SuspendLayout();
             this.tabMain.SuspendLayout();
             this.tabComs.SuspendLayout();
             this.panel1.SuspendLayout();
+            this.tabGUI.SuspendLayout();
+            this.panel3.SuspendLayout();
             this.SuspendLayout();
             // 
             // lblTitle
@@ -67,7 +81,7 @@
             this.configureToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(908, 24);
+            this.menuStrip1.Size = new System.Drawing.Size(946, 24);
             this.menuStrip1.TabIndex = 1;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -94,10 +108,10 @@
             this.tabMain.Controls.Add(this.tabComs);
             this.tabMain.Controls.Add(this.tabConcept);
             this.tabMain.Controls.Add(this.tabGUI);
-            this.tabMain.Location = new System.Drawing.Point(132, 75);
+            this.tabMain.Location = new System.Drawing.Point(140, 75);
             this.tabMain.Name = "tabMain";
             this.tabMain.SelectedIndex = 0;
-            this.tabMain.Size = new System.Drawing.Size(752, 249);
+            this.tabMain.Size = new System.Drawing.Size(794, 483);
             this.tabMain.TabIndex = 2;
             // 
             // tabComs
@@ -106,27 +120,27 @@
             this.tabComs.Location = new System.Drawing.Point(4, 22);
             this.tabComs.Name = "tabComs";
             this.tabComs.Padding = new System.Windows.Forms.Padding(3);
-            this.tabComs.Size = new System.Drawing.Size(744, 223);
+            this.tabComs.Size = new System.Drawing.Size(786, 457);
             this.tabComs.TabIndex = 0;
             this.tabComs.Text = "Communicate";
             this.tabComs.UseVisualStyleBackColor = true;
             // 
             // panel1
             // 
+            this.panel1.Controls.Add(this.richTextBox2);
             this.panel1.Controls.Add(this.lblOutput);
             this.panel1.Controls.Add(this.richTextBox1);
             this.panel1.Controls.Add(this.btnEnter);
-            this.panel1.Controls.Add(this.txtInput);
             this.panel1.Controls.Add(this.lblInput);
-            this.panel1.Location = new System.Drawing.Point(83, 40);
+            this.panel1.Location = new System.Drawing.Point(6, 6);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(441, 153);
+            this.panel1.Size = new System.Drawing.Size(755, 230);
             this.panel1.TabIndex = 0;
             // 
             // lblOutput
             // 
             this.lblOutput.AutoSize = true;
-            this.lblOutput.Location = new System.Drawing.Point(199, 14);
+            this.lblOutput.Location = new System.Drawing.Point(314, 14);
             this.lblOutput.Name = "lblOutput";
             this.lblOutput.Size = new System.Drawing.Size(39, 13);
             this.lblOutput.TabIndex = 4;
@@ -134,27 +148,21 @@
             // 
             // richTextBox1
             // 
-            this.richTextBox1.Location = new System.Drawing.Point(202, 44);
+            this.richTextBox1.Location = new System.Drawing.Point(317, 90);
             this.richTextBox1.Name = "richTextBox1";
-            this.richTextBox1.Size = new System.Drawing.Size(100, 96);
+            this.richTextBox1.Size = new System.Drawing.Size(189, 96);
             this.richTextBox1.TabIndex = 3;
             this.richTextBox1.Text = "";
             // 
             // btnEnter
             // 
-            this.btnEnter.Location = new System.Drawing.Point(46, 117);
+            this.btnEnter.Location = new System.Drawing.Point(32, 193);
             this.btnEnter.Name = "btnEnter";
             this.btnEnter.Size = new System.Drawing.Size(100, 23);
             this.btnEnter.TabIndex = 2;
             this.btnEnter.Text = "Enter";
             this.btnEnter.UseVisualStyleBackColor = true;
-            // 
-            // txtInput
-            // 
-            this.txtInput.Location = new System.Drawing.Point(46, 30);
-            this.txtInput.Name = "txtInput";
-            this.txtInput.Size = new System.Drawing.Size(100, 20);
-            this.txtInput.TabIndex = 1;
+            this.btnEnter.Click += new System.EventHandler(this.btnEnter_Click);
             // 
             // lblInput
             // 
@@ -170,31 +178,155 @@
             this.tabConcept.Location = new System.Drawing.Point(4, 22);
             this.tabConcept.Name = "tabConcept";
             this.tabConcept.Padding = new System.Windows.Forms.Padding(3);
-            this.tabConcept.Size = new System.Drawing.Size(744, 223);
+            this.tabConcept.Size = new System.Drawing.Size(786, 457);
             this.tabConcept.TabIndex = 1;
             this.tabConcept.Text = "Concepts";
             this.tabConcept.UseVisualStyleBackColor = true;
             // 
             // tabGUI
             // 
+            this.tabGUI.Controls.Add(this.btnFunc);
+            this.tabGUI.Controls.Add(this.txtFunc);
+            this.tabGUI.Controls.Add(this.label2);
+            this.tabGUI.Controls.Add(this.btnSize);
+            this.tabGUI.Controls.Add(this.txtPart);
+            this.tabGUI.Controls.Add(this.label1);
+            this.tabGUI.Controls.Add(this.txtSize);
+            this.tabGUI.Controls.Add(this.lblSize);
+            this.tabGUI.Controls.Add(this.panel2);
             this.tabGUI.Location = new System.Drawing.Point(4, 22);
             this.tabGUI.Name = "tabGUI";
             this.tabGUI.Padding = new System.Windows.Forms.Padding(3);
-            this.tabGUI.Size = new System.Drawing.Size(744, 223);
+            this.tabGUI.Size = new System.Drawing.Size(786, 457);
             this.tabGUI.TabIndex = 2;
             this.tabGUI.Text = "Graphical Display";
             this.tabGUI.UseVisualStyleBackColor = true;
             // 
-            // View
+            // btnFunc
+            // 
+            this.btnFunc.Location = new System.Drawing.Point(662, 236);
+            this.btnFunc.Name = "btnFunc";
+            this.btnFunc.Size = new System.Drawing.Size(75, 23);
+            this.btnFunc.TabIndex = 8;
+            this.btnFunc.Text = "Draw";
+            this.btnFunc.UseVisualStyleBackColor = true;
+            this.btnFunc.Click += new System.EventHandler(this.btnFunc_Click);
+            // 
+            // txtFunc
+            // 
+            this.txtFunc.Location = new System.Drawing.Point(649, 210);
+            this.txtFunc.Name = "txtFunc";
+            this.txtFunc.Size = new System.Drawing.Size(100, 20);
+            this.txtFunc.TabIndex = 7;
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(672, 182);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(48, 13);
+            this.label2.TabIndex = 6;
+            this.label2.Text = "Function";
+            // 
+            // btnSize
+            // 
+            this.btnSize.Location = new System.Drawing.Point(662, 113);
+            this.btnSize.Name = "btnSize";
+            this.btnSize.Size = new System.Drawing.Size(75, 23);
+            this.btnSize.TabIndex = 5;
+            this.btnSize.Text = "Draw";
+            this.btnSize.UseVisualStyleBackColor = true;
+            this.btnSize.Click += new System.EventHandler(this.btnSize_Click);
+            // 
+            // txtPart
+            // 
+            this.txtPart.Location = new System.Drawing.Point(649, 78);
+            this.txtPart.Name = "txtPart";
+            this.txtPart.Size = new System.Drawing.Size(100, 20);
+            this.txtPart.TabIndex = 4;
+            this.txtPart.Text = "20";
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(678, 62);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(42, 13);
+            this.label1.TabIndex = 3;
+            this.label1.Text = "Patition";
+            // 
+            // txtSize
+            // 
+            this.txtSize.Location = new System.Drawing.Point(649, 39);
+            this.txtSize.Name = "txtSize";
+            this.txtSize.Size = new System.Drawing.Size(100, 20);
+            this.txtSize.TabIndex = 2;
+            this.txtSize.Text = "200";
+            // 
+            // lblSize
+            // 
+            this.lblSize.AccessibleDescription = "Set Size";
+            this.lblSize.AccessibleName = "Set";
+            this.lblSize.AutoSize = true;
+            this.lblSize.Location = new System.Drawing.Point(678, 23);
+            this.lblSize.Name = "lblSize";
+            this.lblSize.Size = new System.Drawing.Size(27, 13);
+            this.lblSize.TabIndex = 1;
+            this.lblSize.Tag = "Set size squared";
+            this.lblSize.Text = "Size";
+            // 
+            // panel2
+            // 
+            this.panel2.Location = new System.Drawing.Point(6, 6);
+            this.panel2.Name = "panel2";
+            this.panel2.Size = new System.Drawing.Size(610, 445);
+            this.panel2.TabIndex = 0;
+            // 
+            // panel3
+            // 
+            this.panel3.Controls.Add(this.button1);
+            this.panel3.Controls.Add(this.textBox1);
+            this.panel3.Location = new System.Drawing.Point(12, 75);
+            this.panel3.Name = "panel3";
+            this.panel3.Size = new System.Drawing.Size(122, 148);
+            this.panel3.TabIndex = 3;
+            // 
+            // textBox1
+            // 
+            this.textBox1.Location = new System.Drawing.Point(11, 42);
+            this.textBox1.Name = "textBox1";
+            this.textBox1.Size = new System.Drawing.Size(100, 20);
+            this.textBox1.TabIndex = 0;
+            // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(11, 13);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(100, 23);
+            this.button1.TabIndex = 1;
+            this.button1.Text = "Increment";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click_2);
+            // 
+            // richTextBox2
+            // 
+            this.richTextBox2.Location = new System.Drawing.Point(32, 90);
+            this.richTextBox2.Name = "richTextBox2";
+            this.richTextBox2.Size = new System.Drawing.Size(192, 96);
+            this.richTextBox2.TabIndex = 5;
+            this.richTextBox2.Text = "";
+            // 
+            // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(908, 336);
+            this.ClientSize = new System.Drawing.Size(946, 570);
+            this.Controls.Add(this.panel3);
             this.Controls.Add(this.tabMain);
             this.Controls.Add(this.lblTitle);
             this.Controls.Add(this.menuStrip1);
             this.MainMenuStrip = this.menuStrip1;
-            this.Name = "View";
+            this.Name = "Form1";
             this.Text = "View";
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
@@ -202,6 +334,10 @@
             this.tabComs.ResumeLayout(false);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
+            this.tabGUI.ResumeLayout(false);
+            this.tabGUI.PerformLayout();
+            this.panel3.ResumeLayout(false);
+            this.panel3.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -222,8 +358,20 @@
         private System.Windows.Forms.Label lblOutput;
         private System.Windows.Forms.RichTextBox richTextBox1;
         private System.Windows.Forms.Button btnEnter;
-        private System.Windows.Forms.TextBox txtInput;
         private System.Windows.Forms.Label lblInput;
+        private System.Windows.Forms.Panel panel2;
+        private System.Windows.Forms.Button btnFunc;
+        private System.Windows.Forms.TextBox txtFunc;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Button btnSize;
+        private System.Windows.Forms.TextBox txtPart;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.TextBox txtSize;
+        private System.Windows.Forms.Label lblSize;
+        private System.Windows.Forms.Panel panel3;
+        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.RichTextBox richTextBox2;
     }
 }
 

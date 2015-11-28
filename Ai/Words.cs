@@ -10,7 +10,8 @@ namespace Ai
     {
         string[] tenses = { "first", "second", "third" };
         string tense;
-        string type;
+        string[] type = new string[1000];
+        string retval = "dno";
         string[] letters = { "a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z" };
         enum categories {verb, noun, pronoun, adjective, conjunction,adverb,};
         public Words(string word)
@@ -20,7 +21,11 @@ namespace Ai
             {
                 for(int b = 0; b < letters.Length; b++)
                 {
-                    if (word[i].Equals(letters[b]))
+                    
+                    if (word[i].Equals(Convert.ToChar(letters[b])))
+                    {
+                        count++;
+                    }else if (word[i].Equals(Convert.ToChar(letters[b].ToUpper())))
                     {
                         count++;
                     }
@@ -33,7 +38,19 @@ namespace Ai
                 checkWord(word);
             }
         }
+        public string getType()
+        {
+            return this.retval;
+        }
+        public void setReturnVal(string val)
+        {
+            this.retval = val;
 
+        }
+        public void setType(string type, int pos)
+        {
+            this.type[pos] = type;
+        }
         public string getTense()
         {
             return this.tense;
@@ -55,18 +72,19 @@ namespace Ai
             for(int i =0; i <9; i++)
             {
                 check = isVerb.checker(i, word);
-                if (check.Equals("verb")) { type = check; break; }
+                if (check.Equals("verb")) { setReturnVal(check); break; }
                 check = isNoun.checker(i, word);
-                if (check.Equals("noun")) { type = check; break; }
+                if (check.Equals("noun")) { setReturnVal(check); break; }
                 check = isAdjective.checker(i, word);
-                if (check.Equals("adjective")) { type = check; break; }
+                if (check.Equals("adjective")) { setReturnVal(check); break; }
                 check = isPronoun.checker(i, word);
-                if (check.Equals("pronoun")) { type = check; break; }
+                if (check.Equals("pronoun")) { setReturnVal(check); break; }
                 check = isConjunction.checker(i, word);
-                if (check.Equals("conjunction")) { type = check; break; }
+                if (check.Equals("conjunction")) { setReturnVal(check); break; }
                 check = isAdverb.checker(i, word);
-                if (check.Equals("adverb")) { type = check; break; }
+                if (check.Equals("adverb")) { setReturnVal(check); break; }
             }
+            if (getType().Equals("dno")) { setReturnVal("X"); };
             return word;
         }
 
