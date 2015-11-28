@@ -34,7 +34,8 @@ namespace Ai
         string[] parse = new string[10];
         //Stack myStack = new Stack();
         int[] holders = new int[10];
-        int holder;
+        float holder;
+        int length = 50;
 
         public string setText
         {
@@ -45,11 +46,11 @@ namespace Ai
         {
             this.op = new string[size];
         }
-        public void setHolder(int val)
+        public void setHolder(float val)
         {
             this.holder = val;
         }
-        public int getHolder()
+        public float getHolder()
         {
             return this.holder;
         }
@@ -103,16 +104,16 @@ namespace Ai
             axisY = new Point(square - (stepsize / 2), square + stepsize);
         }
 
-        public int setCX(int vals)
+        public float setCX(float vals)
         {
-            int coords;
+            float coords;
             int i;
             coords = vals + square / 2;
             return coords;
         }
-        public int setCY(int vals)
+        public float setCY(float vals)
         {
-            int coords;
+            float coords;
             int i;
             coords = square / 2 - vals;
             return coords;
@@ -176,7 +177,7 @@ namespace Ai
 
             return 0;
         }
-        private int infix(string[] inputs, int val, int pos)
+        private float infix(string[] inputs, int val, int pos)
         {
             string[] delimiterChars = { "*", "-", "+", "/" };
             string[] orderOps = { "(", ")", "^", "*", "-", "+", "/", "Cos", "Tan", "Sin" };
@@ -223,7 +224,8 @@ namespace Ai
                                 }
                                 else
                                 {
-                                    setHolder(getHolder() + Convert.ToInt32(inputs[i]));
+                                    if (inputs[i].Equals("x")) { setHolder(getHolder() + val); }
+                                    else { setHolder(getHolder() + Convert.ToInt32(inputs[i]));}
                                     opset = 0;
                                     break;
                                 }
@@ -251,7 +253,8 @@ namespace Ai
                                 }
                                 else
                                 {
-                                    setHolder(getHolder() - Convert.ToInt32(inputs[i]));
+                                    if (inputs[i].Equals("x")) { setHolder(getHolder() - val); }
+                                    else { setHolder(getHolder() - Convert.ToInt32(inputs[i])); }
                                     opset = 0;
                                     break;
                                 }
@@ -279,36 +282,52 @@ namespace Ai
                                 }
                                 else
                                 {
-                                    setHolder(getHolder() * Convert.ToInt32(inputs[i]));
+                                    if (inputs[i].Equals("x")) { setHolder(getHolder() * val); }
+                                    else { setHolder(getHolder() * Convert.ToInt32(inputs[i])); }
                                     opset = 0;
                                     break;
                                 }
                             case "/":
                                 if (inputs[i].Equals("Cos") || inputs[i].Equals("Sin") || inputs[i].Equals("Tan"))
                                 {
-                                    switch (inputs[i])
+                                    int rand = 0;
+                                    if(inputs[i + 2].Equals("x")  && val == 0) { } 
+                                    else
                                     {
-                                        case "Sin":
-                                            if (inputs[i + 2].Equals("x")) { setHolder(getHolder() / Convert.ToInt32(Math.Sin(Convert.ToDouble(val)))); }
-                                            else { setHolder(getHolder() / Convert.ToInt32(Math.Sin(Convert.ToDouble(inputs[i + 2])))); }
-                                            break;
-                                        case "Cos":
-                                            if (inputs[i + 2].Equals("x")) { setHolder(Convert.ToInt32(getHolder() / Math.Cos(val))); }
-                                            else { setHolder(getHolder() / Convert.ToInt32(Math.Cos(Convert.ToDouble(inputs[i + 2])))); }
-                                            System.Console.WriteLine(Convert.ToInt32(Math.Cos(Convert.ToDouble(inputs[i + 2]))));
-                                            break;
-                                        case "Tan":
-                                            if (inputs[i + 2].Equals("x")) { setHolder(getHolder() / Convert.ToInt32(Math.Tan(Convert.ToDouble(val)))); }
-                                            else { setHolder(getHolder() / Convert.ToInt32(Math.Tan(Convert.ToDouble(inputs[i + 2])))); }
-                                            break;
-                                    }
+                                        switch (inputs[i])
+                                        {
+                                            case "Sin":
+                                                if (inputs[i + 2].Equals("x")) { if (Convert.ToInt32(Math.Sin(Convert.ToDouble(val))) > 0) { setHolder(Convert.ToInt32(getHolder() / Math.Sin(val))); } }
+                                                else { setHolder(getHolder() / Convert.ToInt32(Math.Sin(Convert.ToDouble(inputs[i + 2])))); }
+                                                break;
+                                            case "Cos":
+                                                if (inputs[i + 2].Equals("x"))
+                                                {
+                                                    if (Convert.ToInt32(Math.Sin(Convert.ToDouble(val))) > 0) { setHolder(Convert.ToInt32(getHolder() / Math.Cos(val))); }
+                                                }
+                                                else { setHolder(getHolder() / Convert.ToInt32(Math.Cos(Convert.ToDouble(inputs[i + 2])))); }
+                                                System.Console.WriteLine(Convert.ToInt32(Math.Cos(Convert.ToDouble(inputs[i + 2]))));
+                                                break;
+                                            case "Tan":
+                                                if (inputs[i + 2].Equals("x")) { setHolder(Convert.ToInt32(getHolder() / Math.Tan(val))); }
+                                                else { setHolder(getHolder() / Convert.ToInt32(Math.Tan(Convert.ToDouble(inputs[i + 2])))); }
+                                                break;
+                                            }
+                                        }
                                     i += 2;
                                     opset = 0;
                                     break;
                                 }
                                 else
                                 {
-                                    setHolder(getHolder() / Convert.ToInt32(inputs[i]));
+                                    if (inputs[i].Equals("x")) { if (val == 0) { } else { setHolder(getHolder() / val);  } }
+                                    else { 
+                                        if (Convert.ToInt32(inputs[i]) != 0)
+                                         {
+                                            setHolder(getHolder() / Convert.ToInt32(inputs[i]));
+                                            opset = 0;  
+                                         }
+                                    }
                                     opset = 0;
                                     break;
                                 }
@@ -335,24 +354,27 @@ namespace Ai
                                 }
                                 else
                                 {
-                                    setHolder(Convert.ToInt32(Math.Pow(Convert.ToDouble(getHolder()), Convert.ToDouble(inputs[i]))));
+                                    if (inputs[i].Equals("x")) { setHolder((float)Math.Pow(Convert.ToDouble(getHolder()), Convert.ToDouble(val))); }
+                                    else { setHolder((float)Math.Pow(Convert.ToDouble(getHolder()), Convert.ToDouble(inputs[i]))); }
                                     opset = 0;
                                     break;
                                 }
                             case "Cos":
-                                if (inputs[i].Equals("x")) { setHolder(getHolder() + Convert.ToInt32(Math.Cos(Convert.ToDouble(val)))); }
-                                else { setHolder(getHolder() + Convert.ToInt32(Math.Cos(Convert.ToDouble(inputs[i])))); }
+                                if (inputs[i+2].Equals("x")) { setHolder(getHolder() + Convert.ToInt32(Math.Cos(Convert.ToDouble(val)))); }
+                                else { setHolder(getHolder() + Convert.ToInt32(Math.Cos(Convert.ToDouble(inputs[i+2])))); }
+                                i += 2;
                                 opset = 0;
                                 break;
                             case "Sin":
-                                if (inputs[i].Equals("x")) { setHolder(getHolder() + Convert.ToInt32(Math.Sin(Convert.ToDouble(val)))); }
-                                else { setHolder(getHolder() + Convert.ToInt32(Math.Sin(Convert.ToDouble(inputs[i])))); }
+                                if (inputs[i+2].Equals("x")) { setHolder(getHolder() + (float) Math.Sin(Convert.ToDouble(val))); }
+                                else { setHolder(getHolder() + Convert.ToInt32(Math.Sin(Convert.ToDouble(inputs[i+2])))); }
+                                i += 2;
                                 opset = 0;
                                 break;
                             case "Tan":
-                                if (inputs[i].Equals("x")) { setHolder(getHolder() + Convert.ToInt32(Math.Tan(Convert.ToDouble(val)))); }
-                                else { setHolder(getHolder() + Convert.ToInt32(Math.Tan(Convert.ToDouble(inputs[i])))); }
-
+                                if (inputs[i+2].Equals("x")) { setHolder(getHolder() + Convert.ToInt32(Math.Tan(Convert.ToDouble(val)))); }
+                                else { setHolder(getHolder() + Convert.ToInt32(Math.Tan(Convert.ToDouble(inputs[i+2])))); }
+                                i += 2;
                                 opset = 0;
                                 break;
                             case "(":
@@ -391,18 +413,18 @@ namespace Ai
         {
             var p = sender as Panel;
             var g = e.Graphics;
-            int var1 = 0;
+            float var1 = 0;
             object[] reverse = new object[10];
             int abc = 0;
-            int points = 50;
+            int points = Convert.ToInt32(txtrange.Text);
 
             Pen myPen = new System.Drawing.Pen(System.Drawing.Color.Black, 1);
 
             int setX = 0;
             string last = "next";
             int i, b;
-            int length = 50;
-            Point[] newP = new Point[points];
+            length = Convert.ToInt32(txtrange.Text);
+            PointF[] newP = new PointF[points];
             for (i = 0; i < op.Length; i++)
             {
                 if (op[i].Equals("x"))
@@ -410,13 +432,13 @@ namespace Ai
                     if (i == 0) { break; }
                     else if (last.Equals("-"))
                     {
-                        setX = 1;
+                        setX = 1; 
                     }
                 }
                 last = op[i];
             }
 
-            for (i = -20, b = 0; i < length && -length < b; i++, b--)
+            for (i = Convert.ToInt32(txtspoint.Text), b = Convert.ToInt32(txtspoint.Text); i < length && -length < b; i++, b--)
             {
                 setHolder(0);
                 if (setX == 1) { i = b; }
@@ -424,11 +446,11 @@ namespace Ai
                 System.Diagnostics.Debug.Write(var1);
                 if (abc < points)
                 {
-                    newP[abc] = new Point(setCX(i), setCY(var1));
+                    newP[abc] = new PointF(setCX(i), setCY(var1));
                 }
                 abc++;
             }
-            Point[] curvepoint = new Point[5] { newP[0], newP[1], newP[2], newP[3], newP[4] };
+            //Point[] curvepoint = new Point[5] { newP[0], newP[1], newP[2], newP[3], newP[4] };
             g.DrawCurve(myPen, newP);
 
 
@@ -462,8 +484,10 @@ namespace Ai
                 {
                     if (i == input.Length - 1)
                     {
-                        b++;
-                        t[c++] += b;
+                        if (b > 0)
+                        {
+                            t[c++] += b++;
+                        }
                     }
                     b++;
                 }
@@ -475,8 +499,10 @@ namespace Ai
                         b = 0;
                     }
                     b = 0;
+
                 }
-                b = 0;
+               
+            }b = 0;
                 for (i = 0; i < c; i++) { System.Console.WriteLine("total numbers conjoined = " + t[i]); if (t[i] > 2) { b += t[i] - 1; } else { b += t[i] - 1; } }
                 System.Console.WriteLine("take away= " + b);
 
@@ -526,7 +552,7 @@ namespace Ai
                 panel2.Paint += new PaintEventHandler(printfunc);
                 panel2.Refresh();
 
-            }
+            
         }
 
         private void btnEnter_Click(object sender, EventArgs e)
@@ -541,6 +567,7 @@ namespace Ai
         private void button1_Click_2(object sender, EventArgs e)
         {
             //controller.incvalue();
+            controller.makeNewConcept();
             
         }
         

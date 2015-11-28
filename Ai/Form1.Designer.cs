@@ -58,6 +58,9 @@
             this.label3 = new System.Windows.Forms.Label();
             this.richTextBox3 = new System.Windows.Forms.RichTextBox();
             this.label4 = new System.Windows.Forms.Label();
+            this.label5 = new System.Windows.Forms.Label();
+            this.txtspoint = new System.Windows.Forms.TextBox();
+            this.txtrange = new System.Windows.Forms.TextBox();
             this.menuStrip1.SuspendLayout();
             this.tabMain.SuspendLayout();
             this.tabComs.SuspendLayout();
@@ -139,7 +142,7 @@
             this.panel1.Controls.Add(this.lblInput);
             this.panel1.Location = new System.Drawing.Point(6, 6);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(755, 230);
+            this.panel1.Size = new System.Drawing.Size(755, 301);
             this.panel1.TabIndex = 0;
             // 
             // lblOutput
@@ -155,7 +158,7 @@
             // 
             this.richTextBox1.Location = new System.Drawing.Point(317, 90);
             this.richTextBox1.Name = "richTextBox1";
-            this.richTextBox1.Size = new System.Drawing.Size(189, 126);
+            this.richTextBox1.Size = new System.Drawing.Size(189, 195);
             this.richTextBox1.TabIndex = 3;
             this.richTextBox1.Text = "";
             // 
@@ -190,6 +193,9 @@
             // 
             // tabGUI
             // 
+            this.tabGUI.Controls.Add(this.txtrange);
+            this.tabGUI.Controls.Add(this.txtspoint);
+            this.tabGUI.Controls.Add(this.label5);
             this.tabGUI.Controls.Add(this.label3);
             this.tabGUI.Controls.Add(this.btnFunc);
             this.tabGUI.Controls.Add(this.txtFunc);
@@ -335,7 +341,7 @@
             // 
             this.richTextBox3.Location = new System.Drawing.Point(529, 90);
             this.richTextBox3.Name = "richTextBox3";
-            this.richTextBox3.Size = new System.Drawing.Size(165, 126);
+            this.richTextBox3.Size = new System.Drawing.Size(165, 195);
             this.richTextBox3.TabIndex = 6;
             this.richTextBox3.Text = "";
             // 
@@ -347,6 +353,31 @@
             this.label4.Size = new System.Drawing.Size(49, 13);
             this.label4.TabIndex = 7;
             this.label4.Text = "Compare";
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(623, 272);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(157, 13);
+            this.label5.TabIndex = 10;
+            this.label5.Text = "Domain starting point and range";
+            // 
+            // txtspoint
+            // 
+            this.txtspoint.Location = new System.Drawing.Point(632, 288);
+            this.txtspoint.Name = "txtspoint";
+            this.txtspoint.Size = new System.Drawing.Size(55, 20);
+            this.txtspoint.TabIndex = 11;
+            this.txtspoint.Text = "-40";
+            // 
+            // txtrange
+            // 
+            this.txtrange.Location = new System.Drawing.Point(714, 288);
+            this.txtrange.Name = "txtrange";
+            this.txtrange.Size = new System.Drawing.Size(55, 20);
+            this.txtrange.TabIndex = 12;
+            this.txtrange.Text = "50";
             // 
             // Form1
             // 
@@ -407,6 +438,9 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.RichTextBox richTextBox3;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.TextBox txtrange;
+        private System.Windows.Forms.TextBox txtspoint;
     }
 }
 

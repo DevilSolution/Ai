@@ -80,6 +80,7 @@ namespace Ai
             pronoun isPronoun = new pronoun();
             conjunction isConjunction = new conjunction();
             adverb isAdverb = new adverb();
+            determiner isDeter = new determiner();
             for (int i = 0; i < 9; i++)
             {
                 check = isVerb.checker(i, word);
@@ -98,6 +99,9 @@ namespace Ai
                 if (check.Equals(word)) { }
                 else { setReturnVal(check); break; }
                 check = isAdverb.checker(i, word);
+                if (check.Equals(word)) { }
+                else { setReturnVal(check); break; }
+                check = isDeter.checker(i, word);
                 if (check.Equals(word)) { }
                 else { setReturnVal(check); break; }
             }
@@ -148,7 +152,7 @@ namespace Ai
                 return word;
             }
             public string transitiveVerb(string word)
-            {
+            {   
                 return word;
             }
             public string intransitiveVerb(string word)
@@ -158,6 +162,10 @@ namespace Ai
             public string auxiliaryVerb(string word)
             {
                 string[] set = { "be", "am", "are", "is", "was", "were", "being", "do", "did", "does", "doing" };
+                for (int i = 0; i < set.Length; i++)
+                {
+                    if (word.Equals(set[i])) { return "aux verb /"; }
+                }
                 return word;
             }
             public string stativeVerb(string word)
@@ -169,7 +177,7 @@ namespace Ai
                 string[] set = { "can", "could", "may", "might", "must", "shall", "should", "will", "would" };
                 for (int i = 0; i < set.Length; i++)
                 {
-                    if (word.Equals(set[i])) { return "modal verb"; }
+                    if (word.Equals(set[i])) { return "modal verb /"; }
                 }
                 return word;
             }
@@ -187,28 +195,28 @@ namespace Ai
                 {
                     if (i == word.Length - 1)
                     {
-                        if (word[i].Equals('g')) { if (word[i - 1].Equals('n')) { if (word[i - 2].Equals('i')) { return "new verb"; } } }
+                        if (word[i].Equals('g')) { if (word[i - 1].Equals('n')) { if (word[i - 2].Equals('i')) { return "new verb /"; } } }
                     }
                 }
                 for (int i = 0; i < word.Length; i++)
                 {
                     if (i == word.Length - 1)
                     {
-                        if (word[i].Equals('d')) { if (word[i - 1].Equals('e')) { return "new verb"; } }
+                        if (word[i].Equals('d')) { if (word[i - 1].Equals('e')) { return "new verb /"; } }
                     }
                 }
                 for (int i = 0; i < word.Length; i++)
                 {
                     if (i == word.Length - 1)
                     {
-                        if (word[i].Equals('t')) { if (word[i - 1].Equals('n')) { return "new verb"; } }
+                        if (word[i].Equals('t')) { if (word[i - 1].Equals('n')) { return "new verb /"; } }
                     }
                 }
                 for (int i = 0; i < word.Length; i++)
                 {
                     if (i == word.Length - 1)
                     {
-                        if (word[i].Equals('s')) { if (word[i - 1].Equals('e')) { if (word[i - 2].Equals('i')) { return "new verb"; } } }
+                        if (word[i].Equals('s')) { if (word[i - 1].Equals('e')) { if (word[i - 2].Equals('i')) { return "new verb /"; } } }
                     }
                 }
                 return word;
@@ -275,7 +283,7 @@ namespace Ai
                 string[] set = { "the", "a", "an" };
                 for (int i = 0; i < set.Length; i++)
                 {
-                    if (word.Equals(set[i])) { return "article"; }
+                    if (word.Equals(set[i])) { return "article /"; }
                 }
                 return word;
             }
@@ -292,7 +300,7 @@ namespace Ai
                 string[] set = { "my", "your", "his", "her", "its", "our", "your", "their" };
                 for (int i = 0; i < set.Length; i++)
                 {
-                    if (word.Equals(set[i])) { return "posseive adjective"; }
+                    if (word.Equals(set[i])) { return "posseive adjective /"; }
                 }
                 return word;
             }
@@ -336,7 +344,7 @@ namespace Ai
                 string[] set = { "mine", "yours", "his", "hers", "ours", "yours", "theirs" };
                 for (int i = 0; i < set.Length; i++)
                 {
-                    if (word.Equals(set[i])) { return "possessive pronoun"; }
+                    if (word.Equals(set[i])) { return "possessive pronoun /"; }
                 }
                 return word;
             }
@@ -345,7 +353,7 @@ namespace Ai
                 string[] set = { "me", "you", "him", "her", "it", "us", "them" };
                 for (int i = 0; i < set.Length; i++)
                 {
-                    if (word.Equals(set[i])) { return "objective pronoun"; }
+                    if (word.Equals(set[i])) { return "objective pronoun /"; }
                 }
                 return word;
             }
@@ -354,7 +362,7 @@ namespace Ai
                 string[] set = { "i", "you", "he", "she", "it", "we", "they" };
                 for (int i = 0; i < set.Length; i++)
                 {
-                    if (word.Equals(set[i])) { return "subjective pronoun"; }
+                    if (word.Equals(set[i])) { return "subjective pronoun /"; }
                 }
                 return word;
             }
@@ -363,7 +371,7 @@ namespace Ai
                 string[] set = { "myself", "yourself", "himself", "herself", "itself", "ourselves", "yourselves", "themselves" };
                 for (int i = 0; i < set.Length; i++)
                 {
-                    if (word.Equals(set[i])) { return "reflexive pronoun"; }
+                    if (word.Equals(set[i])) { return "reflexive pronoun /"; }
                 }
                 return word;
             }
@@ -399,10 +407,10 @@ namespace Ai
             }
             public string coordinatingConjunction(string word)
             {
-                string[] set = { "for", "and", "nor", "but", "or", "yet", "so" };
+                string[] set = { "for", "and", "nor", "but", "or", "yet", "so" , "that"};
                 for (int i = 0; i < set.Length; i++)
                 {
-                    if (word.Equals(set[i])) { return "conjunction"; }
+                    if (word.Equals(set[i])) { return "coordinating conjunction /"; }
                 }
                 return word;
             }
@@ -415,7 +423,7 @@ namespace Ai
                     "til","unless", "until","when", "whenever", "where","whereas", "where if","wherever", "whether", "which", "while", "who", "whoever", "why" };
                 for (int i = 0; i < set.Length; i++)
                 {
-                    if (word.Equals(set[i])) { return "subordinate conjunction"; }
+                    if (word.Equals(set[i])) { return "subordinate conjunction /"; }
                 }
                 return word;
             }
@@ -425,7 +433,7 @@ namespace Ai
                 string[] set = {"both / and", "not only / but also","either / or", "neither / nor", "whether / or", "as / as", "such / that", "scarecely / when", "as many / as", "no sooner / than", "rather / than" };
                 for (int i = 0; i < set.Length; i++)
                 {
-                    if (word.Equals(set[i])) { return "correlative conjunction"; }
+                    if (word.Equals(set[i])) { return "correlative conjunction /"; }
                 }
                 
                 return word;
@@ -467,7 +475,7 @@ namespace Ai
                 {
                     if (i == word.Length - 1)
                     {
-                        if (word[i].Equals('y')) { if (word[i - 1].Equals('l')) { return "new adverb"; } }
+                        if (word[i].Equals('y')) { if (word[i - 1].Equals('l')) { return "new adverb /"; } }
                     }
                 }
                 return word;
@@ -477,7 +485,7 @@ namespace Ai
         {
             public string checker(int method, string word)
             {
-                string checkType = "not";
+                string checkType = word;
                 switch (method)
                 {
                     case 0:
@@ -491,10 +499,37 @@ namespace Ai
 
             public string determines(string word)
             {
-                string[] set = { "its" };
+                string[] set = { "its", "this" };
                 for (int i = 0; i < set.Length; i++)
                 {
-                    if (word.Equals(set[i])) { return "determiner"; }
+                    if (word.Equals(set[i])) { return "determiner /"; }
+                }
+                return word;
+            }
+
+        }
+        public class preposition
+        {
+            public string checker(int method, string word)
+            {
+                string checkType = word;
+                switch (method)
+                {
+                    case 0:
+                        checkType = prepose(word);
+                        break;
+                    default:
+                        break;
+                }
+                return checkType;
+            }
+
+            public string prepose(string word)
+            {
+                string[] set = { "is" };
+                for (int i = 0; i < set.Length; i++)
+                {
+                    if (word.Equals(set[i])) { return "preposition /"; }
                 }
                 return word;
             }

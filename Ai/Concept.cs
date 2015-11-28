@@ -11,7 +11,7 @@ namespace Ai
         Sentence sentence;
         public Concept()
         {
-
+           
 
         }
         public void setSentence(Sentence sent) {
