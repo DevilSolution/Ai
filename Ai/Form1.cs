@@ -12,8 +12,6 @@ namespace Ai
 {
     public partial class Form1 : Form, IView, IModelObserver
     {
-        //intermediate oldinter =  new intermediate;
-
         IController controller;
         public event ViewHandler<IView> changed;
         // View will set the associated controller, this is how view is linked to the controller.
@@ -24,7 +22,6 @@ namespace Ai
 
         public Form1()
         {
-           
             InitializeComponent();
             panel2.Paint += new PaintEventHandler(panel2_Paint);
             panel2.Refresh();
@@ -33,7 +30,7 @@ namespace Ai
         int stepsize = 20;
         int stacksize = 0;
         int[] vals = new int[10];
-        string[] op; //= new string[10];
+        string[] op; 
         string[] parse = new string[10];
         //Stack myStack = new Stack();
         int[] holders = new int[10];
@@ -41,9 +38,7 @@ namespace Ai
 
         public string setText
         {
-           // get { return richTextBox1.Text; }
             set { richTextBox1.AppendText(value + " "); }
-
         }
 
         public void setOp(int size)
@@ -71,9 +66,8 @@ namespace Ai
 
             System.Drawing.Pen myPen;
             myPen = new System.Drawing.Pen(System.Drawing.Color.Black, 1);
-            // g.DrawRectangle(myPen, rectangle);
-            Point axisX;// = new Point(410, 5);
-            Point axisY;// = new Point(410, 5);
+            Point axisX;
+            Point axisY;
             myPen.Color = System.Drawing.Color.Gray;
             int i, a, b, c, d, f;
 
@@ -87,18 +81,11 @@ namespace Ai
                         d++;
                         if ((stepsize < 10) && (d % 2 == 0)) { axisX = new Point(i - ((stepsize / 2) - (stepsize / 3)), square + stepsize + f); }
                         else { axisX = new Point(i - ((stepsize / 2) - (stepsize / 3)), square + stepsize); }
-                        //axisY = new Point(square + stepsize, i - ((stepsize / 2) - (stepsize / 3)));
+
                         axisY = new Point(square + stepsize, i - ((stepsize / 2) - (stepsize / 3)));
 
                         g.DrawString(a.ToString(), DefaultFont, brush, axisX);
                         g.DrawString(b.ToString(), DefaultFont, brush, axisY);
-                    }
-                    else
-                    {
-                        //axisX = new Point(square + stepsize, i - (stepsize / 2));
-                        //axisY = new Point(i - (stepsize / 2), square + stepsize);
-                        //axisX = new Point(square + stepsize + b, i - (stepsize / 2));
-                        //axisY = new Point(i - (stepsize / 2), square + stepsize + b);
                     }
 
                     g.DrawLine(myPen, i, 0, i, square + stepsize);
@@ -114,13 +101,6 @@ namespace Ai
             g.DrawLine(myPen, square / 2, 0, square / 2, square);
             axisX = new Point(square + stepsize, square - (stepsize / 2));
             axisY = new Point(square - (stepsize / 2), square + stepsize);
-            // Point axis = new Point(410, 5);
-            // g.DrawString(steps.ToString(), DefaultFont, brush, axisX);
-            // g.DrawString(steps.ToString(), DefaultFont, brush, axisY);
-            //g.DrawString()
-            // g.DrawRectangle(System.Drawing.Pens.Red, rect);
-            //rect = new Rectangle(-50, -50, 150, 150);
-            //g.DrawRectangle(System.Drawing.Pens.Red, rect);
         }
 
         public int setCX(int vals)
@@ -212,130 +192,7 @@ namespace Ai
             {
                 if (inputs[0].Equals("x") && i == 0) { setHolder(val); continue; }
                 else if (Int32.TryParse(inputs[0], out numValue) && i == 0) { setHolder(numValue); continue; }
-                /*else if (inputs[i].Equals(delimiterChars[0]))
-                {
-                    holders[0] = recur(inputs, val, i, "(");
-
-                    /*
-                    for(i = i+1; i < inputs.Length; i++)
-                    {   
-                        if (opset == 1)
-                        {
-                            switch (operators[0])
-                            {
-                                case "+":
-                                    if (inputs[i].Equals("Cos") || inputs[i].Equals("Sin") || inputs[i].Equals("Tan"))
-                                    {
-                                        if (inputs[i + 2].Equals("x")) { holders[0] = holders[0] + Convert.ToInt32(Math.Cos(Convert.ToDouble(val))); }
-                                        else { holders[0] = holders[0] + Convert.ToInt32(Math.Cos(Convert.ToDouble(inputs[i + 2]))); }
-                                        i += 2;
-                                        opset = 0;
-                                        break;
-                                    }
-                                    else
-                                    {
-                                        holders[0] = holders[0] + Convert.ToInt32(inputs[i]);
-                                        opset = 0;
-                                        break;
-                                    }
-                                case "-":
-                                    if (inputs[i].Equals("Cos") || inputs[i].Equals("Sin") || inputs[i].Equals("Tan"))
-                                    {
-                                        if (inputs[i + 2].Equals("x")) { holders[0] = holders[0] - Convert.ToInt32(Math.Cos(Convert.ToDouble(val))); }
-                                        else { holders[0] = holders[0] - Convert.ToInt32(Math.Cos(Convert.ToDouble(inputs[i + 2]))); }
-                                        i += 2;
-                                        opset = 0;
-                                        break;
-                                    }
-                                    else
-                                    {
-                                        holders[0] = holders[0] - Convert.ToInt32(inputs[i]);
-                                        opset = 0;
-                                        break;
-                                    }
-                                case "*":
-                                    if (inputs[i].Equals("Cos") || inputs[i].Equals("Sin") || inputs[i].Equals("Tan"))
-                                    {
-                                        if (inputs[i + 2].Equals("x")) { holders[0] = holders[0] * Convert.ToInt32(Math.Cos(Convert.ToDouble(val))); }
-                                        else { holders[0] = holders[0] * Convert.ToInt32(Math.Cos(Convert.ToDouble(inputs[i + 2]))); }
-                                        i += 2;
-                                        opset = 0;
-                                        break;
-                                    }
-                                    else
-                                    {
-                                        holders[0] = holders[0] * Convert.ToInt32(inputs[i]);
-                                        opset = 0;
-                                        break;
-                                    }
-                                case "/":
-                                    if (inputs[i].Equals("Cos") || inputs[i].Equals("Sin") || inputs[i].Equals("Tan"))
-                                    {
-                                        if (inputs[i + 2].Equals("x")) { holders[0] = holders[0] / Convert.ToInt32(Math.Cos(Convert.ToDouble(val))); }
-                                        else { holders[0] = holders[0] / Convert.ToInt32(Math.Cos(Convert.ToDouble(inputs[i + 2]))); }
-                                        i += 2;
-                                        opset = 0;
-                                        break;
-                                    }
-                                    else
-                                    {
-                                        holders[0] = holders[0] / Convert.ToInt32(inputs[i]);
-                                        opset = 0;
-                                        break;
-                                    }
-                                case "^":
-                                    if (inputs[i].Equals("Cos") || inputs[i].Equals("Sin") || inputs[i].Equals("Tan"))
-                                    {
-                                        if (inputs[i + 2].Equals("x")) { holders[0] = Convert.ToInt32(Math.Pow(Convert.ToDouble(holders[0]), Convert.ToInt32(Math.Cos(Convert.ToDouble(val))))); }
-                                        else { holders[0] =Convert.ToInt32(Math.Pow(Convert.ToDouble(holders[0]),  Convert.ToInt32(Math.Cos(Convert.ToDouble(inputs[i + 2]))))); }
-                                        i += 2;
-                                        opset = 0;
-                                        break;
-                                    }
-                                    else
-                                    {
-                                        holders[0] = Convert.ToInt32(Math.Pow(Convert.ToDouble(holders[0]), Convert.ToDouble(inputs[i])));
-                                        opset = 0;
-                                        break;
-                                    }
-                                case "Cos":
-                                    if (inputs[i].Equals("x")) { holders[0] = holders[0] + Convert.ToInt32(Math.Cos(Convert.ToDouble(val))); }
-                                    else { holders[0] = holders[0] + Convert.ToInt32(Math.Cos(Convert.ToDouble(inputs[i]))); }
-                                    opset = 0;
-                                    break;
-                                case "Sin":
-                                    if (inputs[i].Equals("x")) { holders[0] = holders[0] + Convert.ToInt32(Math.Sin(Convert.ToDouble(val))); }
-                                    else { holders[0] = holders[0] + Convert.ToInt32(Math.Sin(Convert.ToDouble(inputs[i]))); }
-                                    opset = 0;
-                                    break;
-                                case "Tan":
-                                    if (inputs[i].Equals("x")) { holders[0] = holders[0] + Convert.ToInt32(Math.Tan(Convert.ToDouble(val))); }
-                                    else { holders[0] = holders[0] + Convert.ToInt32(Math.Tan(Convert.ToDouble(inputs[i]))); }
-                                    opset = 0;
-                                    break;
-                            }
-
-                        }
-                        //(int)string.GetNumericValue
-                        for (int b = 0; b < delimiterChars.Length; b++)
-                        {
-                            if (inputs[i].Equals(delimiterChars[b]))
-                            {
-                                if (delimiterChars[b].Equals(")"))
-                                {
-                                    endbrace = 1;
-                                    break;
-                                }
-                                operators[0] = delimiterChars[b];
-                                opset = 1;
-                                break;
-                            }
-                        }
-
-                        if (endbrace == 1) { endbrace = 0; break; }
-                    }
-                    
-                }*/
+               
                 else
                 {
                     if (opset == 1)
@@ -541,15 +398,11 @@ namespace Ai
 
             Pen myPen = new System.Drawing.Pen(System.Drawing.Color.Black, 1);
 
-            // for(int i =0; i < op.Length; i++)
-            //{
-            // System.Console.WriteLine(op[i]);
-            //  }
             int setX = 0;
             string last = "next";
             int i, b;
             int length = 50;
-            Point[] newP = new Point[points];// {new Point(0,0), new Point(0, 0), new Point(0, 0), new Point(0, 0), new Point(0, 0), new Point(0, 0), new Point(0, 0), new Point(0, 0), new Point(0, 0), new Point(0, 0) };
+            Point[] newP = new Point[points];
             for (i = 0; i < op.Length; i++)
             {
                 if (op[i].Equals("x"))
@@ -567,11 +420,6 @@ namespace Ai
             {
                 setHolder(0);
                 if (setX == 1) { i = b; }
-                //for (int a = 0; a < op.Length; a++)
-                //{
-                //System.Console.WriteLine(op[i]);
-                // }
-                //var1 = Convert.ToInt32(Math.Pow(i, secondval));
                 var1 = infix(op, i, 0);
                 System.Diagnostics.Debug.Write(var1);
                 if (abc < points)
@@ -595,9 +443,6 @@ namespace Ai
             int[] t = new int[10];
             int counter = 0;
             input = txtFunc.Text;
-            //string[] eval = input.Split();
-            // foreach (string s in eval)
-            // {
 
             for (c = 0, b = 0, i = 0; i < input.Length; i++)
             {
@@ -619,103 +464,77 @@ namespace Ai
                     {
                         b++;
                         t[c++] += b;
-
                     }
                     b++;
-                    //op[counter] = input[i].ToString();
-                    //counter++;
-                    //System.Console.WriteLine((int)char.GetNumericValue(input[i]));
-                    //System.Console.WriteLine((int)input[i]);
                 }
                 else
                 {
-
                     if (b > 1)
                     {
                         t[c++] += b;
                         b = 0;
-
                     }
                     b = 0;
                 }
-            }
-            b = 0;
-            for (i = 0; i < c; i++) { System.Console.WriteLine("total numbers conjoined = " + t[i]); if (t[i] > 2) { b += t[i] - 1; } else { b += t[i] - 1; } }
-            System.Console.WriteLine("take away= " + b);
+                b = 0;
+                for (i = 0; i < c; i++) { System.Console.WriteLine("total numbers conjoined = " + t[i]); if (t[i] > 2) { b += t[i] - 1; } else { b += t[i] - 1; } }
+                System.Console.WriteLine("take away= " + b);
 
-            setOp((input.Length - (counter * 2)) - b);
-            counter = 0;
-            // System.Console.WriteLine(input);
-            for (i = 0; i < input.Length; i++)
-            {
-                if (input[i].Equals('C'))
+                setOp((input.Length - (counter * 2)) - b);
+                counter = 0;
+                for (i = 0; i < input.Length; i++)
                 {
-                    op[counter] = input[i].ToString() + input[i + 1].ToString() + input[i + 2].ToString();
-                    i += 2;
-                    counter++;
-                }
-                else if (input[i].Equals('S'))
-                {
-                    op[i] = input[i].ToString() + input[i + 1].ToString() + input[i + 2].ToString();
-                    i += 2;
-                    counter++;
-                }
-                else if (input[i].Equals('T'))
-                {
-                    op[i] = input[i].ToString() + input[i + 1].ToString() + input[i + 2].ToString();
-                    i += 2;
-                    counter++;
-                }
-                else if (i + 1 < input.Length && (int)char.GetNumericValue(input[i]) > -1 && (int)char.GetNumericValue(input[i + 1]) > -1)
-                {
-                    //t++;
-
-                    string newstring = input[i].ToString();
-                    op[counter] += input[i].ToString();
-                    //counter;
-                    //System.Console.WriteLine((int)char.GetNumericValue(input[i]));
-                    //System.Console.WriteLine((int)input[i]);
-                }
-                else
-                {
-                    if ((int)char.GetNumericValue(input[i]) > -1)
+                    if (input[i].Equals('C'))
                     {
+                        op[counter] = input[i].ToString() + input[i + 1].ToString() + input[i + 2].ToString();
+                        i += 2;
+                        counter++;
+                    }
+                    else if (input[i].Equals('S'))
+                    {
+                        op[i] = input[i].ToString() + input[i + 1].ToString() + input[i + 2].ToString();
+                        i += 2;
+                        counter++;
+                    }
+                    else if (input[i].Equals('T'))
+                    {
+                        op[i] = input[i].ToString() + input[i + 1].ToString() + input[i + 2].ToString();
+                        i += 2;
+                        counter++;
+                    }
+                    else if (i + 1 < input.Length && (int)char.GetNumericValue(input[i]) > -1 && (int)char.GetNumericValue(input[i + 1]) > -1)
+                    {
+                        string newstring = input[i].ToString();
                         op[counter] += input[i].ToString();
                     }
                     else
                     {
-                        op[counter] = input[i].ToString();
+                        if ((int)char.GetNumericValue(input[i]) > -1)
+                        {
+                            op[counter] += input[i].ToString();
+                        }
+                        else
+                        {
+                            op[counter] = input[i].ToString();
+                        }
+
+                        counter++;
                     }
 
-                    counter++;
                 }
-                //stacksize = i;
-                //System.Console.WriteLine(i);
-                // for(int b = 0; b < delimiterChars.Length; b++)
-                /// if (s[i].Equals(delimiterChars[b]))
-                // {
-                //      System.Console.WriteLine(s[i]);
-                // }
+
+                panel2.Paint += new PaintEventHandler(printfunc);
+                panel2.Refresh();
+
             }
-            //  }
-            for (i = 0; i < op.Length; i++)
-            {
-                //System.Console.WriteLine(op[i]);
-            }
-            //firstval = Convert.ToInt32(eval[0]);
-            //secondval = Convert.ToInt32(eval[1]);
-            //System.Diagnostics.Debug.Write("val = " +secondval);
-            panel2.Paint += new PaintEventHandler(printfunc);
-            panel2.Refresh();
-        
-    }
+        }
 
         private void btnEnter_Click(object sender, EventArgs e)
         {
             //control.newSentence(txtInput.Text);
             // richTextBox1.AppendText(txtInput.Text + "\n");
             controller.sendText(richTextBox2.Text);
-            richTextBox1.AppendText(richTextBox2.Text + "\n");
+            richTextBox3.AppendText(richTextBox2.Text + "\n");
             richTextBox2.Text = "";
         }
 
@@ -724,9 +543,7 @@ namespace Ai
             //controller.incvalue();
             
         }
-        // This event is implementation from IModelObserver which will be invoked by the
-        // Model when there is a change in the value with ModelEventArgs which is derived
-        // from the EventArgs. The IModel object is the one from which invoked this.
+        
         public void setNewText(IModel m, ModelEventArgs e)
         {
             

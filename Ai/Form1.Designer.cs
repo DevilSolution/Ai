@@ -55,6 +55,9 @@
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.button1 = new System.Windows.Forms.Button();
             this.richTextBox2 = new System.Windows.Forms.RichTextBox();
+            this.label3 = new System.Windows.Forms.Label();
+            this.richTextBox3 = new System.Windows.Forms.RichTextBox();
+            this.label4 = new System.Windows.Forms.Label();
             this.menuStrip1.SuspendLayout();
             this.tabMain.SuspendLayout();
             this.tabComs.SuspendLayout();
@@ -127,6 +130,8 @@
             // 
             // panel1
             // 
+            this.panel1.Controls.Add(this.label4);
+            this.panel1.Controls.Add(this.richTextBox3);
             this.panel1.Controls.Add(this.richTextBox2);
             this.panel1.Controls.Add(this.lblOutput);
             this.panel1.Controls.Add(this.richTextBox1);
@@ -150,7 +155,7 @@
             // 
             this.richTextBox1.Location = new System.Drawing.Point(317, 90);
             this.richTextBox1.Name = "richTextBox1";
-            this.richTextBox1.Size = new System.Drawing.Size(189, 96);
+            this.richTextBox1.Size = new System.Drawing.Size(189, 126);
             this.richTextBox1.TabIndex = 3;
             this.richTextBox1.Text = "";
             // 
@@ -185,6 +190,7 @@
             // 
             // tabGUI
             // 
+            this.tabGUI.Controls.Add(this.label3);
             this.tabGUI.Controls.Add(this.btnFunc);
             this.tabGUI.Controls.Add(this.txtFunc);
             this.tabGUI.Controls.Add(this.label2);
@@ -316,6 +322,32 @@
             this.richTextBox2.TabIndex = 5;
             this.richTextBox2.Text = "";
             // 
+            // label3
+            // 
+            this.label3.Location = new System.Drawing.Point(629, 381);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(151, 59);
+            this.label3.TabIndex = 9;
+            this.label3.Text = "Ideally we should be able to use this graphics as output for the coordinates and " +
+    "vectors of the concepts";
+            // 
+            // richTextBox3
+            // 
+            this.richTextBox3.Location = new System.Drawing.Point(529, 90);
+            this.richTextBox3.Name = "richTextBox3";
+            this.richTextBox3.Size = new System.Drawing.Size(165, 126);
+            this.richTextBox3.TabIndex = 6;
+            this.richTextBox3.Text = "";
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(529, 20);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(49, 13);
+            this.label4.TabIndex = 7;
+            this.label4.Text = "Compare";
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -372,6 +404,9 @@
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.TextBox textBox1;
         private System.Windows.Forms.RichTextBox richTextBox2;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.RichTextBox richTextBox3;
     }
 }
 
