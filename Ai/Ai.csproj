@@ -72,6 +72,7 @@
     <Compile Include="Concept.cs" />
     <Compile Include="controller.cs" />
     <Compile Include="intermediate.cs" />
+    <Compile Include="memory.cs" />
     <Compile Include="model.cs" />
     <Compile Include="newconcept.cs" />
     <Compile Include="Sentence.cs" />

@@ -15,7 +15,7 @@ namespace Ai
             I dont know how to seperate adjectives from nouns. I suppose Adjectives are properties, so we may be able
             to break them down that way, other than that we would have to program it to cypher through a dictionary making
             new concepts as it went along. Which is plausable. It seems to catch quite alot so far so it shouldnt take much
-            effort.
+            effort. 
 
         */
         string[] tenses = { "first", "second", "third" };
@@ -105,7 +105,7 @@ namespace Ai
                 if (check.Equals(word)) { }
                 else { setReturnVal(check); break; }
             }
-            if (getType().Equals("dno")) { setReturnVal("X"); };
+            if (getType().Equals("dno")) { setReturnVal("Unknown"); };
             return word;
         }
 
@@ -164,7 +164,7 @@ namespace Ai
                 string[] set = { "be", "am", "are", "is", "was", "were", "being", "do", "did", "does", "doing" };
                 for (int i = 0; i < set.Length; i++)
                 {
-                    if (word.Equals(set[i])) { return "aux verb /"; }
+                    if (word.Equals(set[i])) { return "auxiliary verb"; }
                 }
                 return word;
             }
@@ -177,12 +177,18 @@ namespace Ai
                 string[] set = { "can", "could", "may", "might", "must", "shall", "should", "will", "would" };
                 for (int i = 0; i < set.Length; i++)
                 {
-                    if (word.Equals(set[i])) { return "modal verb /"; }
+                    if (word.Equals(set[i])) { return "modal verb"; }
                 }
                 return word;
             }
             public string phrasalVerb(string word)
             {
+                // "ISH" seems mostly verbs but random words use the 
+                string[] set = { "has", "have", "had" };
+                for (int i = 0; i < set.Length; i++)
+                {
+                    if (word.Equals(set[i])) { return "verb"; }
+                }
                 return word;
             }
             public string irregularVerb(string word)
@@ -191,32 +197,47 @@ namespace Ai
             }
             public string checkVerb(string word)
             {
-                for(int i = 0; i < word.Length; i++)
+                for (int i = 0; i < word.Length; i++)
                 {
-                    if (i == word.Length - 1)
+                    if (i == word.Length - 1 && i > 3)
                     {
-                        if (word[i].Equals('g')) { if (word[i - 1].Equals('n')) { if (word[i - 2].Equals('i')) { return "new verb /"; } } }
+                        if (word[i].Equals('e')) { if (word[i - 1].Equals('t')) { if (word[i - 2].Equals('a')) { return "new verb"; } } }
                     }
                 }
                 for (int i = 0; i < word.Length; i++)
                 {
-                    if (i == word.Length - 1)
+                    if (i == word.Length - 1 && i > 3)
                     {
-                        if (word[i].Equals('d')) { if (word[i - 1].Equals('e')) { return "new verb /"; } }
+                        if (word[i].Equals('g')) { if (word[i - 1].Equals('n')) { if (word[i - 2].Equals('i')) { return "new verb"; } } }
                     }
                 }
                 for (int i = 0; i < word.Length; i++)
                 {
-                    if (i == word.Length - 1)
+                    if (i == word.Length - 1 && i > 3)
                     {
-                        if (word[i].Equals('t')) { if (word[i - 1].Equals('n')) { return "new verb /"; } }
+                        if (word[i].Equals('d')) { if (word[i - 1].Equals('e')) { if (word[i - 2].Equals('i')) { return "new verb"; } } }
                     }
                 }
                 for (int i = 0; i < word.Length; i++)
                 {
-                    if (i == word.Length - 1)
+                    if (i == word.Length - 1 && i > 3)
                     {
-                        if (word[i].Equals('s')) { if (word[i - 1].Equals('e')) { if (word[i - 2].Equals('i')) { return "new verb /"; } } }
+                        if (word[i].Equals('t')) { if (word[i - 1].Equals('n')) { return "new verb"; } }
+                    }
+                }
+                for (int i = 0; i < word.Length; i++)
+                {
+                    if (i == word.Length - 1 && i > 3)
+                    {
+                        if (word[i].Equals('s')) { if (word[i - 1].Equals('e')) { if (word[i - 2].Equals('i')) { return "new verb"; } } }
+                    }
+                }
+               
+                for (int i = 0; i < word.Length; i++)
+                {
+                    if (i == word.Length - 1 && i > 3)
+                    {
+                        if (word[i].Equals('y')) { if (word[i - 1].Equals('f')) { if (word[i - 2].Equals('i')) { return "new verb"; } } }
                     }
                 }
                 return word;
@@ -247,6 +268,76 @@ namespace Ai
             }
             public string checkNoun(string word)
             {
+                for (int i = 0; i < word.Length; i++)
+                {
+                    if (i == word.Length - 1 && i > 3)
+                    {
+                        if (word[i].Equals('y')) { if (word[i - 1].Equals('t')) { if (word[i - 2].Equals('i')) { return "new noun"; } } }
+                    }
+                }
+                for (int i = 0; i < word.Length; i++)
+                {
+                    if (i == word.Length - 1 && i > 3)
+                    {
+                        if (word[i].Equals('c')) { if (word[i - 1].Equals('i')) { if (word[i - 2].Equals('t')) { return "new noun"; } } }
+                    }
+                }
+                for (int i = 0; i < word.Length; i++)
+                {
+                    if (i == word.Length - 1 && i > 3)
+                    {
+                        if (word[i].Equals('n')) { if (word[i - 1].Equals('o')) { if (word[i - 2].Equals('i')) { if (word[i - 3].Equals('t')) { return "new noun"; } } } }
+                    }
+                }
+                for (int i = 0; i < word.Length; i++)
+                {
+                    if (i == word.Length - 1 && i > 3)
+                    {
+                        if (word[i].Equals('e')) { if (word[i - 1].Equals('c')) { if (word[i - 2].Equals('n')) { if (word[i - 3].Equals('a')) { return "new noun"; } } } }
+                    }
+                }
+                for (int i = 0; i < word.Length; i++)
+                {
+                    if (i == word.Length - 1 && i > 3)
+                    {
+                        if (word[i].Equals('e')) { if (word[i - 1].Equals('c')) { if (word[i - 2].Equals('n')) { if (word[i - 3].Equals('e')) { return "new noun"; } } } }
+                    }
+                }
+                for (int i = 0; i < word.Length; i++)
+                {
+                    if (i == word.Length - 1 && i > 3)
+                    {
+                        if (word[i].Equals('s')) { if (word[i - 1].Equals('c')) { if (word[i - 2].Equals('i')) { if (word[i - 3].Equals('t')) { return "new noun"; } } } }
+                    }
+                }
+                for (int i = 0; i < word.Length; i++)
+                {
+                    if (i == word.Length - 1 && i > 3)
+                    {
+                        if (word[i].Equals('p')) { if (word[i - 1].Equals('i')) { if (word[i - 2].Equals('h')) { if (word[i - 3].Equals('s')) { return "new noun"; } } } }
+                    }
+                }
+                for (int i = 0; i < word.Length; i++)
+                {
+                    if (i == word.Length - 1 && i > 3)
+                    {
+                        if (word[i].Equals('y')) { if (word[i - 1].Equals('t')) { if (word[i - 2].Equals('i')) { if (word[i - 3].Equals('l')) { if (word[i - 4].Equals('a')) { return "new noun"; } } } } }
+                    }
+                }
+                for (int i = 0; i < word.Length; i++)
+                {
+                    if (i == word.Length - 1 && i > 3)
+                    {
+                        if (word[i].Equals('y')) { if (word[i - 1].Equals('t')) { if (word[i - 2].Equals('i')) { if (word[i - 3].Equals('r')) { if (word[i - 4].Equals('a')) { return "new noun"; } } } } }
+                    }
+                }
+                for (int i = 0; i < word.Length; i++)
+                {
+                    if (i == word.Length - 1 && i > 3)
+                    {
+                        if (word[i].Equals('s')) { if (word[i - 1].Equals('p')) { if (word[i - 2].Equals('i')) { if (word[i - 3].Equals('h')) { if (word[i - 4].Equals('s')) { return "new noun"; } } } } }
+                    }
+                }
                 return word;
             }
 
@@ -283,7 +374,7 @@ namespace Ai
                 string[] set = { "the", "a", "an" };
                 for (int i = 0; i < set.Length; i++)
                 {
-                    if (word.Equals(set[i])) { return "article /"; }
+                    if (word.Equals(set[i])) { return "article"; }
                 }
                 return word;
             }
@@ -300,12 +391,19 @@ namespace Ai
                 string[] set = { "my", "your", "his", "her", "its", "our", "your", "their" };
                 for (int i = 0; i < set.Length; i++)
                 {
-                    if (word.Equals(set[i])) { return "posseive adjective /"; }
+                    if (word.Equals(set[i])) { return "posseive adjective"; }
                 }
                 return word;
             }
             public string checkAdjective(string word)
             {
+                for (int i = 0; i < word.Length; i++)
+                {
+                    if (i == word.Length - 1 && i > 3)
+                    {
+                        if (word[i].Equals('e')) { if (word[i - 1].Equals('l')) { if (word[i - 2].Equals('b')) { if (word[i - 3].Equals('a')) { return "new adjective"; } } } }
+                    }
+                }
                 return word;
             }
         }
@@ -344,7 +442,7 @@ namespace Ai
                 string[] set = { "mine", "yours", "his", "hers", "ours", "yours", "theirs" };
                 for (int i = 0; i < set.Length; i++)
                 {
-                    if (word.Equals(set[i])) { return "possessive pronoun /"; }
+                    if (word.Equals(set[i])) { return "possessive pronoun"; }
                 }
                 return word;
             }
@@ -353,7 +451,7 @@ namespace Ai
                 string[] set = { "me", "you", "him", "her", "it", "us", "them" };
                 for (int i = 0; i < set.Length; i++)
                 {
-                    if (word.Equals(set[i])) { return "objective pronoun /"; }
+                    if (word.Equals(set[i])) { return "objective pronoun"; }
                 }
                 return word;
             }
@@ -362,7 +460,7 @@ namespace Ai
                 string[] set = { "i", "you", "he", "she", "it", "we", "they" };
                 for (int i = 0; i < set.Length; i++)
                 {
-                    if (word.Equals(set[i])) { return "subjective pronoun /"; }
+                    if (word.Equals(set[i])) { return "subjective pronoun"; }
                 }
                 return word;
             }
@@ -371,7 +469,7 @@ namespace Ai
                 string[] set = { "myself", "yourself", "himself", "herself", "itself", "ourselves", "yourselves", "themselves" };
                 for (int i = 0; i < set.Length; i++)
                 {
-                    if (word.Equals(set[i])) { return "reflexive pronoun /"; }
+                    if (word.Equals(set[i])) { return "reflexive pronoun"; }
                 }
                 return word;
             }
@@ -410,7 +508,7 @@ namespace Ai
                 string[] set = { "for", "and", "nor", "but", "or", "yet", "so" , "that"};
                 for (int i = 0; i < set.Length; i++)
                 {
-                    if (word.Equals(set[i])) { return "coordinating conjunction /"; }
+                    if (word.Equals(set[i])) { return "coordinating conjunction"; }
                 }
                 return word;
             }
@@ -423,7 +521,7 @@ namespace Ai
                     "til","unless", "until","when", "whenever", "where","whereas", "where if","wherever", "whether", "which", "while", "who", "whoever", "why" };
                 for (int i = 0; i < set.Length; i++)
                 {
-                    if (word.Equals(set[i])) { return "subordinate conjunction /"; }
+                    if (word.Equals(set[i])) { return "subordinate conjunction"; }
                 }
                 return word;
             }
@@ -433,7 +531,7 @@ namespace Ai
                 string[] set = {"both / and", "not only / but also","either / or", "neither / nor", "whether / or", "as / as", "such / that", "scarecely / when", "as many / as", "no sooner / than", "rather / than" };
                 for (int i = 0; i < set.Length; i++)
                 {
-                    if (word.Equals(set[i])) { return "correlative conjunction /"; }
+                    if (word.Equals(set[i])) { return "correlative conjunction"; }
                 }
                 
                 return word;
@@ -473,9 +571,9 @@ namespace Ai
             {
                 for (int i = 0; i < word.Length; i++)
                 {
-                    if (i == word.Length - 1)
+                    if (i == word.Length - 1 && i > 2)
                     {
-                        if (word[i].Equals('y')) { if (word[i - 1].Equals('l')) { return "new adverb /"; } }
+                        if (word[i].Equals('y')) { if (word[i - 1].Equals('l')) { return "new adverb"; } }
                     }
                 }
                 return word;
@@ -502,7 +600,7 @@ namespace Ai
                 string[] set = { "its", "this" };
                 for (int i = 0; i < set.Length; i++)
                 {
-                    if (word.Equals(set[i])) { return "determiner /"; }
+                    if (word.Equals(set[i])) { return "determiner"; }
                 }
                 return word;
             }
@@ -529,7 +627,7 @@ namespace Ai
                 string[] set = { "is" };
                 for (int i = 0; i < set.Length; i++)
                 {
-                    if (word.Equals(set[i])) { return "preposition /"; }
+                    if (word.Equals(set[i])) { return "preposition"; }
                 }
                 return word;
             }

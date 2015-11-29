@@ -13,8 +13,8 @@ namespace Ai
     {
         //public int value;
         // public ViewEventArgs(int v) { value = v; }
-        public string value;
-        public ViewEventArgs(string v) { value = v; }
+        public string value, value2;
+        public ViewEventArgs(string v, string v1) { value = v; value2 = v1; }
     }
     // Currently, the interface only contains the method to set the controller to which
     // it is tied. The rest of the view related code is implemented in the form.

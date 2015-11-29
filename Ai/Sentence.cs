@@ -9,8 +9,13 @@ namespace Ai
     class Sentence 
     {
         Concept concept = new Concept();
+        Words[] wordtype = new Words[1000];
+        char[] seperators = { ' ', '.', ',', ';' };
+        string[] words = new string[1000];
+        string[] types = new string[1000];
         int size = 0;
         string returnVal;
+        string cleaned;
         public Sentence(string sentence)
         {
             
@@ -24,6 +29,14 @@ namespace Ai
         {
             return this.returnVal;
         }
+        public void setClean(string cleanS)
+        {
+            this.cleaned += " " + cleanS;
+        }
+        public string getClean()
+        {
+            return this.cleaned;
+        }
         public void setSize(int newsize)
         {
             this.size = newsize;
@@ -32,32 +45,55 @@ namespace Ai
         {
             return this.size;
         }
+        public void setWord(string word, int pos)
+        {
+            this.words[pos] = word;
+        }
+        public string getWord(int pos)
+        {
+            return this.words[pos];
+        }
+        public void setType(string type, int pos)
+        {
+            this.types[pos] = type;
+        }
+        public string getType(int pos)
+        {
+            return this.types[pos];
+        }
 
         public void parseSentence(string sentence)
         {
-            Words[] wordtype = new Words[1000];
-            char[] seperators = {' ', '.', ',', ';' };
-            string[] words = new string[1000];
-            int i, b;
+            
+            int i, b ,c;
             //Could do a string split.
-            for(i = 0, b = 0; i < sentence.Length; i++)
+            for(i = 0, b = 0, c =0 ; i < sentence.Length; i++)
             {
                 switch (sentence[i])
                 {
                     case ' ':
-                        b++;
+                        if (c > 0) { }
+                        else { b++; }
+                        c++;
                         break;
                     case '.':
-                        b++;
+                        if (c > 0) { }
+                        else { b++; }
+                        c++;
                         break;
                     case ',':
-                        b++;
+                        if (c > 0) { }
+                        else { b++; }
+                        c++;
                         break;
                     case ';':
-                        b++;
+                        if (c > 0) { }
+                        else { b++; }
+                        c++;
                         break;
                     default:
                         words[b] += sentence[i];
+                        c = 0;
                         break;
                 }
 
@@ -69,6 +105,8 @@ namespace Ai
             setSize(b);
             for(i =0; i <= b; i++)
             {
+                setWord(words[i], i);
+                setClean(words[i]);
                 wordtype[i] = new Words(words[i]);
                 System.Console.WriteLine(wordtype[i].getType());
             }
@@ -81,7 +119,8 @@ namespace Ai
             string returntype = "";
             for(int i= 0; i <= getSize(); i++)
             {
-                returntype += mywordTypes[i].getType() + " ";
+                setType(mywordTypes[i].getType(), i);
+                returntype += mywordTypes[i].getType() + " /";
 
             }
 

@@ -18,6 +18,7 @@ namespace Ai
         public void setController(IController cont)
         {
             controller = cont;
+            
         }
 
         public Form1()
@@ -560,7 +561,7 @@ namespace Ai
             //control.newSentence(txtInput.Text);
             // richTextBox1.AppendText(txtInput.Text + "\n");
             controller.sendText(richTextBox2.Text);
-            richTextBox3.AppendText(richTextBox2.Text + "\n");
+            //richTextBox3.AppendText(richTextBox2.Text + "\n");
             richTextBox2.Text = "";
         }
 
@@ -575,6 +576,11 @@ namespace Ai
         {
             
             richTextBox1.AppendText("" + e.newval + "\n");
+            richTextBox3.AppendText("" + e.secondval + "\n");
+        }
+        public void setOtherText(IModel m, ModelEventArgs e)
+        {
+            richTextBox3.AppendText("" + e.newval + "\n");
         }
        
         // When this event is raised can mean the user must have changed the value.
